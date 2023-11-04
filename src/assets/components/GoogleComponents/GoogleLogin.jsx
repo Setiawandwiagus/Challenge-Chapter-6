@@ -7,7 +7,7 @@ import { CookieKeys, CookieStorage } from "../../../utils/cookies";
 import GoogleLogo from "../../img/google-logo.png";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setToken } from "../../../redux/reducers/auth/authLoginSlice";
+import { setIsLoggedIn, setToken } from "../../../redux/reducers/auth/authLoginSlice";
 
 function GoogleLogin({ buttonText }) {
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ function GoogleLogin({ buttonText }) {
 
       CookieStorage.set(CookieKeys.AuthToken, token);
       dispatch(setToken({ token }));
-      dispatch(setLoggedIn(true));
+      dispatch(setIsLoggedIn(true));
       navigate("/home");
     } catch (error) {}
   };
