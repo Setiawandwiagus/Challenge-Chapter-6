@@ -36,15 +36,7 @@ function GoogleLogin({ buttonText }) {
       dispatch(setToken({ token }));
       dispatch(setLoggedIn(true));
       navigate("/home");
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        toast.error(error.response.data.message, {
-          position: "top-center",
-        });
-        return;
-      }
-      toast.error(error.message);
-    }
+    } catch (error) {}
   };
 
   const loginWithGoogle = useGoogleLogin({
