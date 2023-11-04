@@ -11,3 +11,5 @@ Untuk menjalankan aplikasi ini harus dilakukan beberapa instalasi seperti beriku
 - npm install --save @rsuite/icons
 - npm install --save @fortawesome/fontawesome-free
 - npm install --save @fortawesome/react-fontawesome @fortawesome/free-regular-svg-icons
+
+- link vercel = https://challenge-chapter-6-delta.vercel.app/
