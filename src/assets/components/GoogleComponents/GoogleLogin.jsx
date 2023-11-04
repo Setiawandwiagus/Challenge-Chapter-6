@@ -5,8 +5,13 @@ import { toast } from "react-toastify";
 import { Button } from "react-bootstrap";
 import { CookieKeys, CookieStorage } from "../../../utils/cookies";
 import GoogleLogo from "../../img/google-logo.png";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setToken } from "../../../redux/reducers/auth/authLoginSlice";
 
 function GoogleLogin({ buttonText }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [LoggedIn, setLoggedIn] = useState(false);
   const registerLoginWithGoogleAction = async (accessToken) => {
     try {
@@ -28,11 +33,9 @@ function GoogleLogin({ buttonText }) {
       const { token } = response.data.data;
 
       CookieStorage.set(CookieKeys.AuthToken, token);
-      toast.success("Login Success!! Click to go to HomePage", {
-        position: "top-center",
-        autoClose: 2000,
-        onClick: () => setLoggedIn(true),
-      });
+      dispatch(setToken({ token }));
+      dispatch(setLoggedIn(true));
+      navigate("/home");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         toast.error(error.response.data.message, {
@@ -52,7 +55,7 @@ function GoogleLogin({ buttonText }) {
   return (
     <div>
       {LoggedIn ? (
-        (window.location.href = "/home")
+        navigate("/home")
       ) : (
         <div className="flex flex-row">
           <button

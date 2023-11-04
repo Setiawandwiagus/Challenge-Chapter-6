@@ -22,20 +22,14 @@ const SearchMovieList = () => {
 
   useEffect(() => {
     if (fetchSearch) {
-      dispatch(dataSearch(fetchSearch.data));
-    }
-  }, [dispatch, fetchSearch]);
-
-  useEffect(() => {
-    if (fetchSearch) {
       if (fetchSearch.data.length > 0) {
         setSearch(fetchSearch.data);
-        console.log(fetchSearch.data);
+        dispatch(dataSearch(fetchSearch.data));
       } else {
         setResult(false);
       }
     }
-  }, [fetchSearch]);
+  }, [fetchSearch, dispatch]);
 
   if (isLoading) {
     return (
